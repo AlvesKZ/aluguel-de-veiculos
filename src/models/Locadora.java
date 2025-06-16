@@ -1,18 +1,10 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Locadora {
     private List<Veiculo> frota = new ArrayList<>();
-
-    public List<Veiculo> getFrota() {
-        return frota;
-    }
-
-    public void setFrota(List<Veiculo> frota) {
-        this.frota = frota;
-    }
 
     public void adicionarVeiculo(Veiculo veiculo) {
         frota.add(veiculo);
@@ -21,13 +13,15 @@ public class Locadora {
 
     public List<Veiculo> listarVeiculosDisponiveis() {
         System.out.println("Veículos disponíveis:");
+        List<Veiculo> disponiveis = new ArrayList<>();
         for (int i = 0; i < frota.size(); i++) {
             Veiculo v = frota.get(i);
             if (!v.isAlugado()) {
                 System.out.println("[" + i + "] " + v.exibirDetalhes());
+                disponiveis.add(v);
             }
         }
-        return frota;
+        return disponiveis;
     }
 
     public void alugarVeiculo(int index, int dias) {
@@ -64,10 +58,18 @@ public class Locadora {
     }
 
     public void exibirRelatorioFrota() {
-        System.out.println("Relatório da frota completa:");
+        System.out.println("Relatório dos veículos alugados:");
+        boolean algumAlugado = false;
         for (int i = 0; i < frota.size(); i++) {
             Veiculo veiculo = frota.get(i);
-            System.out.println(i + " - " + veiculo.exibirDetalhes());
+            if (veiculo.isAlugado()) {
+                System.out.println(i + " - " + veiculo.exibirDetalhes());
+                algumAlugado = true;
+            }
+        }
+        if (!algumAlugado) {
+            System.out.println("Nenhum veículo está alugado no momento.");
         }
     }
+
 }

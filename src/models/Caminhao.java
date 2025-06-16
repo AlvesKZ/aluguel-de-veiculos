@@ -21,6 +21,7 @@ public class Caminhao extends Veiculo{
         double totalAluguel = (getPrecoDiaria() + 50) * dias;
 
         System.out.printf("Preço total do aluguel: %.2f", totalAluguel);
+        System.out.println();
         return totalAluguel;
     }
 

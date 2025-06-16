@@ -25,6 +25,7 @@ public class Carro extends Veiculo{
         }
 
         System.out.printf("Preço total do aluguel: %.2f", totalAluguel);
+        System.out.println();
         return totalAluguel;
     }
 
