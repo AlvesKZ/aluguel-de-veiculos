@@ -81,18 +81,23 @@ public abstract class Veiculo {
     }
 
     public String exibirDetalhes() {
-        return "Veiculo{" +
-                "marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", ano=" + ano +
-                ", precoDiaria=" + precoDiaria +
-                ", alugado=" + alugado +
-                '}';
+        return String.format("Veiculo: %s %s (%d) - R$%.2f/dia - Alugado: %s",
+                getMarca(), getModelo(), getAno(), getPrecoDiaria(), isAlugado() ? "Sim" : "Não");
     }
+
 
     public static void exibirTiposVeiculos() {
         System.out.println("Tipos de veículos disponíveis:");
         System.out.println("- Carro");
         System.out.println("- Moto");
-        System.out.println("- Caminhão");    }
+        System.out.println("- Caminhão");
+    }
+
+    @Override
+    public String toString() {
+        return exibirDetalhes();
+    }
+
 }
+
+
